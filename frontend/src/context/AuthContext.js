@@ -2,9 +2,9 @@ import { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext();
 
-export const useAuth = () => {
-  return useContext(AuthContext);
-};
+export const useAuth = () => useContext(AuthContext);
+
+const API = "https://myblog-website-it3w.onrender.com";
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -16,16 +16,17 @@ export const AuthProvider = ({ children }) => {
 
   const checkAuth = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/auth/me", {
+      const res = await fetch(`${API}/api/auth/me`, {
         credentials: "include"
       });
+
       if (res.ok) {
         const data = await res.json();
         setUser(data.user);
       } else {
         setUser(null);
       }
-    } catch (error) {
+    } catch (err) {
       setUser(null);
     } finally {
       setLoading(false);
@@ -33,40 +34,59 @@ export const AuthProvider = ({ children }) => {
   };
 
   const login = async (email, password) => {
-    const res = await fetch("http://localhost:5000/api/auth/login", {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password })
-    });
+    try {
+      const res = await fetch(`${API}/api/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ email, password })
+      });
 
-    if (res.ok) {
+      if (!res.ok) {
+        const data = await res.json();
+        return { success: false, message: data.message };
+      }
+
       await checkAuth();
       return { success: true };
-    } else {
-      const data = await res.json();
-      return { success: false, message: data.message || "Login failed" };
+    } catch (err) {
+      return { success: false, message: "Server not reachable" };
+    }
+  };
+
+  // ✅ ADD THIS (MISSING)
+  const register = async (username, email, password) => {
+    try {
+      const res = await fetch(`${API}/api/auth/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ username, email, password })
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        return { success: false, message: data.message };
+      }
+
+      return { success: true };
+    } catch (err) {
+      return { success: false, message: "Server not reachable" };
     }
   };
 
   const logout = async () => {
-    await fetch("http://localhost:5000/api/auth/logout", {
+    await fetch(`${API}/api/auth/logout`, {
       method: "POST",
       credentials: "include"
     });
     setUser(null);
   };
 
-  const value = {
-    user,
-    loading,
-    login,
-    logout,
-    checkAuth
-  };
-
   return (
-    <AuthContext.Provider value={value}>
+    <AuthContext.Provider
+      value={{ user, loading, login, register, logout, checkAuth }}
+    >
       {children}
     </AuthContext.Provider>
   );

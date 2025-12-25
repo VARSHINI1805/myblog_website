@@ -6,7 +6,7 @@ export default function Blogs() {
   const navigate = useNavigate();
 
   const saveBlog = async () => {
-    await fetch("http://localhost:5000/api/blogs", {
+    await fetch("https://myblog-website-it3w.onrender.com/api/blogs", {
       method: "POST",
       credentials: "include",
       headers: { "Content-Type": "application/json" },

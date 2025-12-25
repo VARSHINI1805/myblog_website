@@ -20,7 +20,7 @@ export default function AddBlog() {
     setError("");
 
     try {
-      const res = await fetch("http://localhost:5000/api/blogs", {
+      const res = await fetch("https://myblog-website-it3w.onrender.com/api/blogs", {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },

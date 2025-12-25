@@ -18,7 +18,7 @@ export default function EditBlog() {
 
   const fetchBlog = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/blogs/${id}`);
+      const res = await fetch(`https://myblog-website-it3w.onrender.com/api/blogs/${id}`);
       if (res.ok) {
         const data = await res.json();
         // Check if user is the author
@@ -49,7 +49,7 @@ export default function EditBlog() {
     setError("");
 
     try {
-      const res = await fetch(`http://localhost:5000/api/blogs/${id}`, {
+      const res = await fetch(`https://myblog-website-it3w.onrender.com/api/blogs/${id}`, {
         method: "PUT",
         credentials: "include",
         headers: { "Content-Type": "application/json" },

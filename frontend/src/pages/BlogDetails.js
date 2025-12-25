@@ -27,7 +27,7 @@ export default function BlogDetails() {
 
   const fetchBlog = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/blogs/${id}`);
+      const res = await fetch(`https://myblog-website-it3w.onrender.com/api/blogs/${id}`);
       if (res.ok) {
         const data = await res.json();
         setBlog(data);
@@ -48,7 +48,7 @@ export default function BlogDetails() {
     }
 
     try {
-      const res = await fetch(`http://localhost:5000/api/blogs/${id}/like`, {
+      const res = await fetch(`https://myblog-website-it3w.onrender.com/api/blogs/${id}/like`, {
         method: "POST",
         credentials: "include"
       });
@@ -68,7 +68,7 @@ export default function BlogDetails() {
     }
 
     try {
-      const res = await fetch(`http://localhost:5000/api/blogs/${id}/save`, {
+      const res = await fetch(`https://myblog-website-it3w.onrender.com/api/blogs/${id}/save`, {
         method: "POST",
         credentials: "include"
       });
@@ -96,7 +96,7 @@ export default function BlogDetails() {
     }
 
     try {
-      const res = await fetch(`http://localhost:5000/api/blogs/${id}/comment`, {
+      const res = await fetch(`https://myblog-website-it3w.onrender.com/api/blogs/${id}/comment`, {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
@@ -119,7 +119,7 @@ export default function BlogDetails() {
     }
 
     try {
-      const res = await fetch(`http://localhost:5000/api/blogs/${id}`, {
+      const res = await fetch(`https://myblog-website-it3w.onrender.com/api/blogs/${id}`, {
         method: "DELETE",
         credentials: "include"
       });
@@ -155,7 +155,7 @@ export default function BlogDetails() {
     }
 
     try {
-      const res = await fetch(`http://localhost:5000/api/blogs/${id}/comment/${commentId}`, {
+      const res = await fetch(`https://myblog-website-it3w.onrender.com/api/blogs/${id}/comment/${commentId}`, {
         method: "PUT",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
@@ -183,7 +183,7 @@ export default function BlogDetails() {
     }
 
     try {
-      const res = await fetch(`http://localhost:5000/api/blogs/${id}/comment/${commentId}`, {
+      const res = await fetch(`https://myblog-website-it3w.onrender.com/api/blogs/${id}/comment/${commentId}`, {
         method: "DELETE",
         credentials: "include"
       });

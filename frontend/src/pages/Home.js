@@ -49,7 +49,7 @@ export default function Home() {
 
   const fetchBlogs = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/blogs");
+      const res = await fetch("https://myblog-website-it3w.onrender.com/api/blogs");
       const data = await res.json();
       setBlogs(data);
     } catch (error) {
@@ -63,8 +63,8 @@ export default function Home() {
   const performSearch = async (query) => {
     try {
       const url = query.trim()
-        ? `http://localhost:5000/api/blogs/search?query=${encodeURIComponent(query)}`
-        : "http://localhost:5000/api/blogs";
+        ? `https://myblog-website-it3w.onrender.com/api/blogs/search?query=${encodeURIComponent(query)}`
+        : "https://myblog-website-it3w.onrender.com/api/blogs";
       const res = await fetch(url);
       const data = await res.json();
       setBlogs(data);

@@ -17,7 +17,7 @@ export default function Dashboard() {
 
   const fetchMyBlogs = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/blogs/user/my-blogs", {
+      const res = await fetch("https://myblog-website-it3w.onrender.com/api/blogs/user/my-blogs", {
         credentials: "include"
       });
       if (res.ok) {
@@ -33,7 +33,7 @@ export default function Dashboard() {
 
   const fetchSavedBlogs = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/blogs/user/saved", {
+      const res = await fetch("https://myblog-website-it3w.onrender.com/api/blogs/user/saved", {
         credentials: "include"
       });
       if (res.ok) {
@@ -51,7 +51,7 @@ export default function Dashboard() {
     }
 
     try {
-      const res = await fetch(`http://localhost:5000/api/blogs/${blogId}`, {
+      const res = await fetch(`https://myblog-website-it3w.onrender.com/api/blogs/${blogId}`, {
         method: "DELETE",
         credentials: "include"
       });
@@ -69,7 +69,7 @@ export default function Dashboard() {
 
   const handleUnsave = async (blogId) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/blogs/${blogId}/save`, {
+      const res = await fetch(`https://myblog-website-it3w.onrender.com/api/blogs/${blogId}/save`, {
         method: "POST",
         credentials: "include"
       });
