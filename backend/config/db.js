@@ -2,15 +2,14 @@ import mongoose from "mongoose";
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
+    const conn = await mongoose.connect(process.env.MONGO_URI, {
+      dbName: "myblog",
     });
 
-    console.log("✅ MongoDB Atlas Connected");
+    console.log("MongoDB Connected:", conn.connection.host);
   } catch (error) {
-    console.error("❌ MongoDB connection failed:", error.message);
-    process.exit(1);
+    console.error("MongoDB connection failed:", error.message);
+    // ❌ DO NOT use process.exit(1) on Render
   }
 };
 
